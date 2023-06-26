@@ -1,0 +1,57 @@
+/* *****************************************************************************
+ *  Name:              Jyothsna Reddy V
+ *  Last modified:     June 26, 2023
+ * Program Description: Write a program Kary that takes two integer command
+ * line arguments i and k and converts i to base k. Assume that i is an integer
+ *  in Java’s long data type and that k is an integer between 2 and 16.
+ * For bases greater than 10, use the letters A through F to represent the
+ * 11th through 16th digits, respectively.
+ **************************************************************************** */
+
+public class programBase10 {
+    public static void main(String[] args) throws IllegalArgumentException {
+        if ((Integer.parseInt(args[1]) < 2 || Integer.parseInt(args[1]) > 16)) {
+            throw new IllegalArgumentException("New base must be from 2 - 16");
+        }
+        long num = Integer.parseInt(args[0]);
+        int newBase = Integer.parseInt(args[1]);
+        long initialnum = num;
+        String result = "";
+        String FinalResult = "";
+        long remainder;
+        while (num > 0) {
+            remainder = num % newBase;
+            if (newBase >= 11) {
+                if (remainder == 10) {
+                    result += 'A';
+                }
+                else if (remainder == 11) {
+                    result += 'B';
+                }
+                else if (remainder == 12) {
+                    result += 'C';
+                }
+                else if (remainder == 13) {
+                    result += 'D';
+                }
+                else if (remainder == 14) {
+                    result += 'E';
+                }
+                else if (remainder == 15) {
+                    result += 'F';
+                }
+                else {
+                    result += remainder;
+                }
+            }
+            else {
+                result += remainder;
+            }
+            num /= newBase;
+        }
+        FinalResult = new StringBuffer(result).reverse().toString();
+        System.out.println(
+                "Converting " + initialnum + " to base" + newBase + " gives " + FinalResult);
+
+    }
+}
